@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Welcome To Hicarb Engineering Pvt Ltd</h1>
+    </header>
+    <div class="container">
+        <div class="button1">
+        <h2>Select SQF Type</h2>
+        <button onclick="window.location.href='{% url 'material_list' sqf_type='80' %}'">SQF 80</button>
+        <button onclick="window.location.href='{% url 'material_list' sqf_type='100' %}'">SQF 100</button>
+        <button onclick="window.location.href='{% url 'material_list' sqf_type='120' %}'">SQF 120</button>
+        </div>
+    </div>
+</body>
+</html>

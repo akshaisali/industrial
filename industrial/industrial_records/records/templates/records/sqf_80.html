@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SQF 80</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>SQF 80</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="button">Submit</button>
+        </form>
+        <h2>Existing Data</h2>
+        <table>
+            <tr>
+                <th>Specification</th>
+                <th>Quantity</th>
+                <th>Make</th>
+                <th>Purpose</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+            {% for item in data %}
+            <tr>
+                <td>{{ item.specification }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.make }}</td>
+                <td>{{ item.purpose }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.total }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{% url 'home' %}" class="button">Back to Home</a>
+    </div>
+</body>
+</html>

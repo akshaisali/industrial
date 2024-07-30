@@ -1,0 +1,38 @@
+<!-- templates/records/material_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Material List</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <script src="{% static 'js/toggleFields.js' %}"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Material List</h1>
+        <table>
+            <tr>
+                <th>SQF Type</th>
+                <th>Specification</th>
+                <th>Quantity</th>
+                <th>Make</th>
+                <th>Purpose</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+            {% for material in materials %}
+            <tr>
+                <td>{{ material.sqf_type }}</td>
+                <td>{{ material.specification }}</td>
+                <td>{{ material.quantity }}</td>
+                <td>{{ material.make }}</td>
+                <td>{{ material.purpose }}</td>
+                <td>{{ material.price }}</td>
+                <td>{{ material.total }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{{ sqf_t,ype }}" class="button">Back to Home</a>
+    </div>
+</body>
+</html>

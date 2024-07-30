@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Material</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Add Material for SQF {{ sqf_type }}</h1>
+    </header>
+    <div class="container1">
+        <div class="list1">
+            <div class="list">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save</button>
+            <a href="{% url 'material_list' sqf_type=sqf_type %}"><button>Cancel</button></a>
+            </div>
+        </form>
+        <a href="{% url 'home' %}" class="button">Back to Home</a>
+    </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!-- templates/records/material_edit.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Material</title>
+</head>
+<body>
+    <h1>Edit Material</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save changes</button>
+    </form>
+    <a href="{% url 'material_list' sqf_type=form.instance.sqf_type %}">Cancel</a>
+</body>
+</html>

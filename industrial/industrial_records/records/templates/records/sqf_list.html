@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SQF {{ sqf_type }} List</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>SQF {{ sqf_type }} Material Line</h1>
+        <a href="{% url 'material_add' sqf_type=sqf_type %}"><button>Add New Material</button></a>
+    </header>
+    <div class="container">
+        <!-- Category Buttons -->
+        <div class="buttons">
+            <button onclick="window.location.href='{% url 'tempering' sqf_type=sqf_type %}'">Tempering {{ sqf_type }}</button>
+            <button onclick="window.location.href='{% url 'washing' sqf_type=sqf_type %}'">Washing {{ sqf_type }}</button>
+            <button onclick="window.location.href='{% url 'travelser' sqf_type=sqf_type %}'">Traverser {{ sqf_type }}</button>
+            <button onclick="window.location.href='{% url 'crossconveyor' sqf_type=sqf_type %}'">Cross Conveyor {{ sqf_type }}</button>
+        </div>
+
+        <!-- Material List Table -->
+        <table>
+            <tr>
+                <th>S No</th>
+                <th>Specification</th>
+                <th>Quantity</th>
+                <th>Make</th>
+                <th>Purpose</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+            {% for item in data %}
+                {% if item.is_heading %}
+                    <!-- Heading Row for Specification -->
+                    <tr class="heading">
+                        <td colspan="7">{{ item.specification }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ item.specification }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.make }}</td>
+                        <td>{{ item.purpose }}</td>
+                        <td>{{ item.price }}</td>
+                        <td>{{ item.total }}</td>
+                        <td>
+                            <a href="{% url 'material_edit' pk=item.pk %}"><button>..Edit..</button></a>
+                            <a href="{% url 'material_delete' pk=item.pk %}"><button>Delete</button></a>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% empty %}
+                <tr>
+                    <td colspan="8">No data available.</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <!-- Back to Home Button -->
+        <div class="buttons">
+            <a href="{% url 'home' %}"><button>Back to Home</button></a>
+        </div>
+    </div>
+</body>
+</html>
